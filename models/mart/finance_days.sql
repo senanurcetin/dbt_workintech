@@ -7,6 +7,7 @@ select
     round(sum(purchase_cost), 2) as total_purchase_cost,
     round(sum(shipping_fee), 2) as total_shipping_fee,
     round(sum(log_cost), 2) as total_log_cost,
+    round(sum(ship_cost), 2) as total_ship_cost,
     sum(quantity) as total_quantity
 from {{ ref('int_orders_operational') }}
 group by date_date
