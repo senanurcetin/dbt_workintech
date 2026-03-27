@@ -33,3 +33,6 @@ models:
 
       - name: total_quantity
         description: "Total quantity of products sold per day."
+        
+      - name: total_ship_cost
+        description: "Total shipping cost per day."
