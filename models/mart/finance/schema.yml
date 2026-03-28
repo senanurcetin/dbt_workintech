@@ -9,30 +9,91 @@ models:
         tests:
           - not_null
           - unique
-
       - name: total_transactions
         description: "Total number of orders per day."
-
       - name: total_revenue
         description: "Total revenue generated per day."
-
       - name: avg_basket
         description: "Average basket value per day (total revenue divided by number of orders)."
-
       - name: operational_margin
         description: "Total operational margin per day."
-
       - name: total_purchase_cost
         description: "Total purchase cost per day."
-
       - name: total_shipping_fee
         description: "Total shipping fees paid by customers per day."
-
       - name: total_log_cost
         description: "Total logistics costs per day."
-
       - name: total_quantity
         description: "Total quantity of products sold per day."
-        
       - name: total_ship_cost
         description: "Total shipping cost per day."
+
+  - name: finance_campaigns_day
+    description: "Daily finance mart enriched with paid campaign performance and advertising margin."
+    columns:
+      - name: date
+        description: "Reporting date."
+        tests:
+          - not_null
+          - unique
+      - name: ads_margin
+        description: "Advertising-adjusted margin calculated as operational_margin minus ads_cost."
+      - name: average_basket
+        description: "Average basket value per day."
+      - name: operational_margin
+        description: "Operational margin before advertising cost."
+      - name: ads_cost
+        description: "Advertising cost per day."
+      - name: ads_impression
+        description: "Advertising impressions per day."
+      - name: ads_clicks
+        description: "Advertising clicks per day."
+      - name: quantity
+        description: "Quantity sold per day."
+      - name: revenue
+        description: "Revenue per day."
+      - name: purchase_cost
+        description: "Purchase cost per day."
+      - name: margin
+        description: "Margin per day before operational costs."
+      - name: shipping_fee
+        description: "Shipping fee per day."
+      - name: log_cost
+        description: "Logistics cost per day."
+      - name: ship_cost
+        description: "Shipping cost per day."
+
+  - name: finance_campaigns_month
+    description: "Monthly finance mart enriched with paid campaign performance and advertising margin."
+    columns:
+      - name: datemonth
+        description: "Month of reporting."
+        tests:
+          - not_null
+          - unique
+      - name: ads_margin
+        description: "Advertising-adjusted margin aggregated by month."
+      - name: average_basket
+        description: "Average basket value aggregated by month."
+      - name: operational_margin
+        description: "Operational margin aggregated by month."
+      - name: ads_cost
+        description: "Advertising cost aggregated by month."
+      - name: ads_impression
+        description: "Advertising impressions aggregated by month."
+      - name: ads_clicks
+        description: "Advertising clicks aggregated by month."
+      - name: quantity
+        description: "Quantity sold aggregated by month."
+      - name: revenue
+        description: "Revenue aggregated by month."
+      - name: purchase_cost
+        description: "Purchase cost aggregated by month."
+      - name: margin
+        description: "Margin aggregated by month."
+      - name: shipping_fee
+        description: "Shipping fee aggregated by month."
+      - name: log_cost
+        description: "Logistics cost aggregated by month."
+      - name: ship_cost
+        description: "Shipping cost aggregated by month."

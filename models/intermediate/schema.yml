@@ -8,27 +8,20 @@ models:
         description: "Order identifier."
         tests:
           - not_null
-
       - name: products_id
         description: "Product identifier."
         tests:
           - not_null
-
       - name: date_date
         description: "Transaction date."
-
       - name: revenue
         description: "Revenue generated per product line."
-
       - name: quantity
         description: "Quantity sold per product."
-
       - name: purchase_price
         description: "Purchase price of the product."
-
       - name: purchase_cost
         description: "Total purchase cost (quantity * purchase_price)."
-
       - name: margin
         description: "Margin calculated as revenue minus purchase cost."
 
@@ -40,19 +33,14 @@ models:
         tests:
           - not_null
           - unique
-
       - name: date_date
         description: "Order date."
-
       - name: revenue
         description: "Total revenue per order."
-
       - name: quantity
         description: "Total quantity per order."
-
       - name: purchase_cost
         description: "Total purchase cost per order."
-
       - name: margin
         description: "Total margin per order."
 
@@ -64,9 +52,49 @@ models:
         tests:
           - not_null
           - unique
-
       - name: date_date
         description: "Order date."
-
       - name: operational_margin
         description: "Operational margin calculated as margin + shipping_fee - log_cost - ship_cost."
+
+  - name: int_campaigns
+    description: "Union of all paid marketing campaign sources at campaign-day granularity."
+    tests:
+      - unique:
+          column_name: "concat(cast(date_date as string), '-', paid_source, '-', cast(campaign_key as string))"
+    columns:
+      - name: date_date
+        description: "Campaign performance date."
+        tests:
+          - not_null
+      - name: paid_source
+        description: "Advertising platform source."
+        tests:
+          - not_null
+      - name: campaign_key
+        description: "Campaign identifier."
+        tests:
+          - not_null
+      - name: campaign_name
+        description: "Standardized campaign name."
+      - name: ads_cost
+        description: "Advertising cost."
+      - name: impression
+        description: "Number of ad impressions."
+      - name: click
+        description: "Number of ad clicks."
+
+  - name: int_campaigns_day
+    description: "Daily aggregated paid marketing metrics across all campaign sources."
+    columns:
+      - name: date_date
+        description: "Aggregation date."
+        tests:
+          - not_null
+          - unique
+      - name: ads_cost
+        description: "Total advertising cost per day."
+      - name: ads_impression
+        description: "Total ad impressions per day."
+      - name: ads_clicks
+        description: "Total ad clicks per day."
